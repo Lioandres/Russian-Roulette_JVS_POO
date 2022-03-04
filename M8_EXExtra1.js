@@ -1,119 +1,121 @@
 class Gun {
-    #actualPosition
-    #bulletPosition
+  constructor() {
+    this.actualPosition = Math.ceil(Math.random() * 6);
+    this.bulletPosition = Math.ceil(Math.random() * 6);
+  }
 
-    constructor(){
-        this.#actualPosition=Math.ceil((Math.random() * 6))
-        this.#bulletPosition=Math.ceil((Math.random() * 6))
-    }
+  fire() {
+    return this.actualPosition === this.bulletPosition ? true : false;
+  }
 
-    fire(){
-        return (this.#actualPosition===this.#bulletPosition)? true: false 
-    }
+  nextBullet() {
+    this.actualPosition++;
+    if (this.actualPosition > 6) this.actualPosition = 1;
+  }
 
-    nextBullet(){
-        this.#actualPosition++
-        if(this.#actualPosition>6) this.#actualPosition=1
-    }
-
-    inform(){
-        console.log(`La posicion actual es en el lugar: "${this.#actualPosition}"\ny la bala se encuentra en al posicion "${this.#bulletPosition}"`)
-        
-    }
+  inform() {
+    let informPrintBox = document.getElementById("playerStatus");
+    informPrintBox.textContent = `La posicion actual es en el lugar: "${this.actualPosition}"\ny la bala se encuentra en la posicion "${this.bulletPosition}"`;
+  }
 }
 
 class Player {
-    id
-    name
-    nickname
-    alive
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+    this.nickname = name + id;
+    this.alive = true;
+  }
 
-    constructor(id,name){
-        this.id=id
-        this.name=name
-        this.nickname=name+id
-        this.alive=true
-
+  play(gun) {
+    let playerStatus = "";
+    if (gun.fire()) {
+      playerStatus = `El juego se ha acabado porque el jugador ${game1.playersList[counter].name} esta esta muerto`;
+      game1.playersList[counter].alive = false;
+      game1.showRoundResults();
+      game1.endGame();
     }
-    play(revolver){
-        revolver.inform()
-        // if(!revolver.fire()) console.log(`el jugador  número ${this.id} ,${this.name} sigue vivo` )
-        // if(revolver.fire()===true && this.id===revolver.inform()) {
-        //     console.log(`el jugador que tiene la posición ${this.id} , con nombre ${this.name} esta muerto` )
-        // }
-        // if(!revolver.fire()) {
-        //     console.log(`el jugador que tiene la posición  ${this.id} , con nombre ${this.name} sigue vivo` )
-        // }   
-        return (revolver.fire())  //console.log(`el jugador número ${this.id} ,${this.#name} está muerto` )
-        
+    if (!gun.fire()) {
+      playerStatus = `El jugador ${game1.playersList[counter].name} sigue vivo`;
     }
+    document.getElementById("playerStatus").textContent = playerStatus;
+  }
 }
 
 class Game {
-    #playersList
-    #gun
-    constructor(){
-        this.#playersList=[]
-        this.#gun=new Gun
-    }
-    savePlayer(player){
-        this.#playersList.push(player)    
-    }
-    endGame(){
-        
-        let index=0
-        let player=this.#playersList[index]
-        while (!player.play(this.#gun) ) {
-            if(player.lenght===index){
-                this.anotherRound()
-                index=0
-            }
-            if(player.lenght!=index){
-                
-                index++
-            }
-            this.#gun.nextBullet()
-        }
+  constructor() {
+    this.playersList = [];
+    this.gun = new Gun();
+  }
 
-        player.alive=false
-        this.anotherRound()
-        console.log(`El juego ha terminado porque ${player.name} esta muerto`)
-        document.getElementById("result2").textContent=`El juego ha terminado porque ${player.name} esta muerto`
-    } 
-    anotherRound(){
-        
-        let player1
-        let content=""
-        for(let i=0;i<this.#playersList.length;i++){
-              player1=this.#playersList[i]
-              if(player1.alive) {
-                  console.log(`el jugador que tiene la posición ${player1.id} , con nombre ${player1.name} sigue vivo`)
-                  content+=`el jugador que tiene la posición ${player1.id} , con nombre ${player1.name} sigue vivo<br>`
-              }
-              if(!player1.alive) {
-                  console.log(`El jugador que tiene la posición ${player1.id} , con nombre ${player1.name} esta muerto` )
-                  content+=`El jugador que tiene la posición ${player1.id} , con nombre ${player1.name} esta muerto<br>`
-              }
-        }
-        document.getElementById("result1").innerHTML=content
-        
-    }   
+  savePlayer(player) {
+    this.playersList.push(player);
+  }
+
+  showRoundResults() {
+    let resultPrintBox = document.getElementById("roundResult");
+    while (resultPrintBox.firstChild) {
+      resultPrintBox.removeChild(resultPrintBox.firstChild);
+    }
+    let roundText = document.createElement("h2");
+    roundText.textContent = `En esta Ronda:`;
+    resultPrintBox.appendChild(roundText);
+    for (let i = 0; i < game1.playersList.length; i++) {
+      let playerPrintResult = document.createElement("h2");
+      resultPrintBox.appendChild(playerPrintResult);
+      if (game1.playersList[i].alive === false)
+        playerPrintResult.textContent = `El jugador ${game1.playersList[i].name} esta muerto`;
+      if (game1.playersList[i].alive === true)
+        playerPrintResult.textContent = `El jugador ${game1.playersList[i].name} sigue vivo`;
+    }
+  }
+
+  endGame() {
+    return (endGame1 = true);
+  }
 }
 
-let game1=new Game
-let id=0
+let game1 = new Game();
+let id = 0;
 
-function addPlayer(){
-    let name=document.getElementById("name").value
-    id+=1
-    let player=new Player(id,name)
-    game1.savePlayer(player)
-    
-    
-    console.log(game1)
-} 
-function LetsPlay(){
-    game1.endGame()
+function addPlayer() {
+  if (id >= 6) return alert(`El numero máximo de 6 jugadores ya fué alcanzado`);
+
+  let name = document.getElementById("name").value;
+  id += 1;
+  let player = new Player(id, name);
+
+  let namePrintBox = document.getElementById("playerName");
+  let playerPrintName = document.createElement("h2");
+  playerPrintName.textContent = player.name;
+  namePrintBox.appendChild(playerPrintName);
+
+  game1.savePlayer(player);
+
+  console.log(game1); // This line can be removed after testing
+}
+
+let counter = 0;
+let endGame1;
+
+
+
+function fire() {
+  if (endGame1)
+    return alert(`No es posible disparar porque el juego ha terminado`);
+  if (id === 0) return alert(`Debe ingresar un jugador antes de disparar`);
+  let resultPrintBox = document.getElementById("roundResult");
+    while (resultPrintBox.firstChild) {
+      resultPrintBox.removeChild(resultPrintBox.firstChild);
+    }
     
 
+  game1.gun.inform();
+  game1.playersList[counter].play(game1.gun);
+  game1.gun.nextBullet();
+  counter += 1;
+  if (counter === game1.playersList.length) {
+    counter = 0;
+    game1.showRoundResults();
+  }
 }
