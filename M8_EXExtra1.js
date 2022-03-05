@@ -14,7 +14,7 @@ class Gun {
   }
 
   inform() {
-    let informPrintBox = document.getElementById("playerStatus");
+    let informPrintBox = document.getElementById("gunStatus");
     informPrintBox.textContent = `La posicion actual es en el lugar: "${this.actualPosition}"\ny la bala se encuentra en la posicion "${this.bulletPosition}"`;
   }
 }
@@ -61,7 +61,7 @@ class Game {
     roundText.textContent = `En esta Ronda:`;
     resultPrintBox.appendChild(roundText);
     for (let i = 0; i < game1.playersList.length; i++) {
-      let playerPrintResult = document.createElement("h2");
+      let playerPrintResult = document.createElement("h3");
       resultPrintBox.appendChild(playerPrintResult);
       if (game1.playersList[i].alive === false)
         playerPrintResult.textContent = `El jugador ${game1.playersList[i].name} esta muerto`;
@@ -75,41 +75,39 @@ class Game {
   }
 }
 
+
+
+
 let game1 = new Game();
 let id = 0;
 
 function addPlayer() {
   if (id >= 6) return alert(`El numero máximo de 6 jugadores ya fué alcanzado`);
-
   let name = document.getElementById("name").value;
   id += 1;
   let player = new Player(id, name);
-
   let namePrintBox = document.getElementById("playerName");
   let playerPrintName = document.createElement("h2");
   playerPrintName.textContent = player.name;
   namePrintBox.appendChild(playerPrintName);
-
   game1.savePlayer(player);
-
   console.log(game1); // This line can be removed after testing
 }
+
+
+
 
 let counter = 0;
 let endGame1;
 
-
-
 function fire() {
   if (endGame1)
-    return alert(`No es posible disparar porque el juego ha terminado`);
+    return alert(`No es posible disparar porque el juego ha terminado\nHaga Click en el botón de la derecha para JUGAR DE NUEVO`);
   if (id === 0) return alert(`Debe ingresar un jugador antes de disparar`);
   let resultPrintBox = document.getElementById("roundResult");
     while (resultPrintBox.firstChild) {
       resultPrintBox.removeChild(resultPrintBox.firstChild);
     }
-    
-
   game1.gun.inform();
   game1.playersList[counter].play(game1.gun);
   game1.gun.nextBullet();
@@ -117,5 +115,22 @@ function fire() {
   if (counter === game1.playersList.length) {
     counter = 0;
     game1.showRoundResults();
+  }
+}
+
+function anotherGame(){
+  game1 = new Game();
+  id = 0;
+  counter = 0;
+  endGame1=false;
+  let playerNamePrintBox = document.getElementById("playerName")
+  while (playerNamePrintBox.firstChild) {
+    playerNamePrintBox.removeChild(playerNamePrintBox.firstChild);
+  }
+  document.getElementById("gunStatus").textContent=""
+  document.getElementById("playerStatus").textContent=""
+  let resultPrintBox = document.getElementById("roundResult");
+  while (resultPrintBox.firstChild) {
+    resultPrintBox.removeChild(resultPrintBox.firstChild);
   }
 }

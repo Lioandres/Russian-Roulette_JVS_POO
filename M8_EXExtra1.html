@@ -9,16 +9,19 @@
 </head>
 <body>
     <body background="./M8_EXExtra1_russian.png"></body>
-    <h1>RULETA RUSA</h1>
+    <h1 style="text-align: center;">RULETA RUSA</h1>
     Ingrese el nombre del jugador <input id="name" type="text">
     <button onclick="addPlayer()">Haga click para ingresar el jugador</button>
-    <div><button onclick="fire()">Haga Click para Disparar</button></div>
-    
-    <h2 style="font-size: 50px;font-weight: 500;background-color: rgb(94, 80, 3);" >JUGADORES</h2>
+    <div>
+        Haga click para Disparar<button onclick="fire()">Dispara!</button>
+        <button style="color:white;font-size: 25px;font-weight: 400;background-color: rgb(94, 80, 3);float: right;border-radius: 30%;" onclick="anotherGame()">JUGAR DE NUEVO</button></span>
+   </div>
+    <h2 style="color:#cfcac8;font-size: 40px;font-weight: 400;background-color: rgb(94, 80, 3);" >JUGADORES</h2>
     <div id="playerName"></div>
-    <h2 style="font-size: 50px;font-weight: 500;background-color:rgb(94, 80, 3);" >ESTADO DEL JUGADOR</h2>
+    <h2 style="color:#cfcac8;font-size: 40px;font-weight: 400;background-color:rgb(94, 80, 3);" >RESULTADO DEL DISPARO</h2>
+    <h3 id="gunStatus"></h3>
     <h3 id="playerStatus"></h3>
-    <h2 style="font-size: 50px;font-weight: 500;background-color:rgb(94, 80, 3);" >RESULTADO DE LA RONDA</h2>
+    <h2 style="color:#cfcac8;font-size: 40px;font-weight: 400;background-color:rgb(94, 80, 3);" >RESULTADO DE LA RONDA</h2>
     <div id="roundResult"></div>
     
 </body>
