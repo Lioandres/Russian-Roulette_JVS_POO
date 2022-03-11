@@ -1,25 +1,25 @@
 function getTable(){
-    let spanOK
-    let fisrthirdLine
+let spanOK
+    let bingoNumbers
     do{
-        fisrthirdLine=[]
+        bingoNumbers=[]
         let repetedNumber=false
 
      
 
-            for (let i=1;i<=5;i++){
+            for (let i=1;i<=15;i++){
                 do{
                 repetedNumber=false
                 number=Math.ceil((Math.random() * 90))          
-                    for (let position=0;position<=(fisrthirdLine.length-1);position++){
-                            if (number===fisrthirdLine[position]) repetedNumber=true     
+                    for (let position=0;position<bingoNumbers.length;position++){
+                            if (number===bingoNumbers[position]) repetedNumber=true     
                     }
                 
                 }
                 while (repetedNumber===true)  
-                fisrthirdLine.push(number)
+                bingoNumbers.push(number)
             }
-            console.log(fisrthirdLine)
+            console.log(bingoNumbers)
         
 
             let span1=0
@@ -33,164 +33,125 @@ function getTable(){
             let span9=0
 
 
-            for (let i=0;i<=5;i++){
-                if (fisrthirdLine[i]>=1 && fisrthirdLine[i]<=9)  span1++ 
-                if (fisrthirdLine[i]>=10 && fisrthirdLine[i]<=19) span2++
-                if (fisrthirdLine[i]>=20 && fisrthirdLine[i]<=29) span3++
-                if (fisrthirdLine[i]>=30 && fisrthirdLine[i]<=39) span4++
-                if (fisrthirdLine[i]>=40 && fisrthirdLine[i]<=49) span5++
-                if (fisrthirdLine[i]>=50 && fisrthirdLine[i]<=59) span6++
-                if (fisrthirdLine[i]>=60 && fisrthirdLine[i]<=69) span7++
-                if (fisrthirdLine[i]>=70 && fisrthirdLine[i]<=79) span8++
-                if (fisrthirdLine[i]>=80 && fisrthirdLine[i]<=90) span9++  
+            for (let i=0;i<=15;i++){
+                if (bingoNumbers[i]>=1 && bingoNumbers[i]<=9)  span1++ 
+                if (bingoNumbers[i]>=10 && bingoNumbers[i]<=19) span2++
+                if (bingoNumbers[i]>=20 && bingoNumbers[i]<=29) span3++
+                if (bingoNumbers[i]>=30 && bingoNumbers[i]<=39) span4++
+                if (bingoNumbers[i]>=40 && bingoNumbers[i]<=49) span5++
+                if (bingoNumbers[i]>=50 && bingoNumbers[i]<=59) span6++
+                if (bingoNumbers[i]>=60 && bingoNumbers[i]<=69) span7++
+                if (bingoNumbers[i]>=70 && bingoNumbers[i]<=79) span8++
+                if (bingoNumbers[i]>=80 && bingoNumbers[i]<=90) span9++  
             } 
 
-        spanOK=(span1<=1 && span2<=1 && span3<=1 && span4<=1 && span5<=1 && span6<=1 && span7<=1 && span8<=1 &&span9<=1)
+        spanOK=(span1<=3 && span2<=3 && span3<=3 && span4<=3 && span5<=3 && span6<=3 && span7<=3 && span8<=3 &&span9<=3)
         console.log(spanOK)
     } 
 
     while(!spanOK)  
 
 
-        let a=fisrthirdLine.sort(function(a,b){return a-b})
-  
-    //////////////////////////////////////////////////////////////////////////////
-    spanOK=false
-    let secondLine
-    do{
-        secondLine=[]
-        let repetedNumber=false
+        let bingoNumbersOrdered=bingoNumbers.sort(function(a,b){return a-b})
 
-     
+    let firstLine=[]
+    let secondLine=[]
+    let thirdLine=[]
 
-            for (let i=1;i<=5;i++){
-                do{
-                repetedNumber=false
-                number=Math.ceil((Math.random() * 90))          
-                    for (let position=0;position<=(secondLine.length-1);position++){
-                            if (number===secondLine[position] && number===fisrthirdLine[position]) repetedNumber=true  
-                            for(element of fisrthirdLine) if (element===number)    repetedNumber=true 
-                                
-                            
-                    }
-                
-                }
-                while (repetedNumber===true)  
-                secondLine.push(number)
-            }
-            console.log(secondLine)
-        
-
-            let span1=0
-            let span2=0
-            let span3=0
-            let span4=0
-            let span5=0
-            let span6=0
-            let span7=0
-            let span8=0
-            let span9=0
-
-
-            for (let i=0;i<=5;i++){
-                if (secondLine[i]>=1 && secondLine[i]<=9)  span1++ 
-                if (secondLine[i]>=10 && secondLine[i]<=19) span2++
-                if (secondLine[i]>=20 && secondLine[i]<=29) span3++
-                if (secondLine[i]>=30 && secondLine[i]<=39) span4++
-                if (secondLine[i]>=40 && secondLine[i]<=49) span5++
-                if (secondLine[i]>=50 && secondLine[i]<=59) span6++
-                if (secondLine[i]>=60 && secondLine[i]<=69) span7++
-                if (secondLine[i]>=70 && secondLine[i]<=79) span8++
-                if (secondLine[i]>=80 && secondLine[i]<=90) span9++  
-            } 
-
-        spanOK=(span1<=1 && span2<=1 && span3<=1 && span4<=1 && span5<=1 && span6<=1 && span7<=1 && span8<=1 &&span9<=1)
-        console.log(spanOK)
-    } 
-
-    while(!spanOK)  
-
-
-        let b=secondLine.sort(function(a,b){return a-b})
-  
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-spanOK=false
-let thirdLine
-do{
-    thirdLine=[]
-    let repetedNumber=false
-
- 
-
-        for (let i=1;i<=5;i++){
-            do{
-            repetedNumber=false
-            number=Math.ceil((Math.random() * 90))          
-                for (let position=0;position<=(thirdLine.length-1);position++){
-                        if (number===thirdLine[position] && number===secondLine[position] && number===fisrthirdLine[position]) repetedNumber=true     
-                        for(element of fisrthirdLine) if (element===number)    repetedNumber=true 
-                        for(element of secondLine) if (element===number)    repetedNumber=true 
-                }
-            
-            }
-            while (repetedNumber===true)  
-            thirdLine.push(number)
-        }
-        console.log(thirdLine)
+    
+    for (let i=0;i<=15;i+=3){
+                if (bingoNumbersOrdered[i]>=1 &&  bingoNumbersOrdered[i]<=9)  firstLine[0]=bingoNumbersOrdered[i] 
+                if (!(bingoNumbersOrdered[i]>=1 &&  bingoNumbersOrdered[i]<=9))  firstLine[0]="" 
+                if (bingoNumbersOrdered[i+1]>=1 &&  bingoNumbersOrdered[i+1]<=9)  secondLine[0]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=1 &&  bingoNumbersOrdered[i+1]<=9))  secondLine[0]=""
+                if (bingoNumbersOrdered[i+2]>=1 &&  bingoNumbersOrdered[i+2]<=9)  thirdLine[0]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=1 &&  bingoNumbersOrdered[i+2]<=9))  thirdLine[0]=""
     
 
-        let span1=0
-        let span2=0
-        let span3=0
-        let span4=0
-        let span5=0
-        let span6=0
-        let span7=0
-        let span8=0
-        let span9=0
+                if (bingoNumbersOrdered[i]>=10 &&  bingoNumbersOrdered[i]<=19)  firstLine[1]=bingoNumbersOrdered[i] 
+                if (!(bingoNumbersOrdered[i]>=10 &&  bingoNumbersOrdered[i]<=19))  firstLine[1]==""
+                if (bingoNumbersOrdered[i+1]>=10 &&  bingoNumbersOrdered[i+1]<=19)  secondLine[1]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=10 &&  bingoNumbersOrdered[i+1]<=19))  secondLine[1]=""
+                if (bingoNumbersOrdered[i+2]>=10 &&  bingoNumbersOrdered[i+2]<=19)  thirdLine[1]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=10 &&  bingoNumbersOrdered[i+2]<=19))  thirdLine[1]=""
 
+                if (bingoNumbersOrdered[i]>=20 &&  bingoNumbersOrdered[i]<=29)  firstLine[2]=bingoNumbersOrdered[i] 
+                if (!(bingoNumbersOrdered[i]>=20 &&  bingoNumbersOrdered[i]<=29))  firstLine[2]=""
+                if (bingoNumbersOrdered[i+1]>=20 &&  bingoNumbersOrdered[i+1]<=29)  secondLine[2]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=20 &&  bingoNumbersOrdered[i+1]<=29))  secondLine[2]=""
+                if (bingoNumbersOrdered[i+2]>=20 &&  bingoNumbersOrdered[i+2]<=29)  thirdLine[2]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=20 &&  bingoNumbersOrdered[i+2]<=29))  thirdLine[2]=""
 
-        for (let i=0;i<=5;i++){
-            if (thirdLine[i]>=1 && thirdLine[i]<=9)  span1++ 
-            if (thirdLine[i]>=10 && thirdLine[i]<=19) span2++
-            if (thirdLine[i]>=20 && thirdLine[i]<=29) span3++
-            if (thirdLine[i]>=30 && thirdLine[i]<=39) span4++
-            if (thirdLine[i]>=40 && thirdLine[i]<=49) span5++
-            if (thirdLine[i]>=50 && thirdLine[i]<=59) span6++
-            if (thirdLine[i]>=60 && thirdLine[i]<=69) span7++
-            if (thirdLine[i]>=70 && thirdLine[i]<=79) span8++
-            if (thirdLine[i]>=80 && thirdLine[i]<=90) span9++  
-        } 
+                if (bingoNumbersOrdered[i]>=30 &&  bingoNumbersOrdered[i]<=39)  firstLine[3]=bingoNumbersOrdered[i] 
+                if (!(bingoNumbersOrdered[i]>=30 &&  bingoNumbersOrdered[i]<=39))  firstLine[3]=""
+                if (bingoNumbersOrdered[i+1]>=30 &&  bingoNumbersOrdered[i+1]<=39)  secondLine[3]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=30 &&  bingoNumbersOrdered[i+1]<=39))  secondLine[3]=""
+                if (bingoNumbersOrdered[i+2]>=30 &&  bingoNumbersOrdered[i+2]<=39)  thirdLine[3]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=30 &&  bingoNumbersOrdered[i+2]<=39))  thirdLine[3]=""
 
-    spanOK=(span1<=1 && span2<=1 && span3<=1 && span4<=1 && span5<=1 && span6<=1 && span7<=1 && span8<=1 &&span9<=1)
-    console.log(spanOK)
-} 
+                if (bingoNumbersOrdered[i]>=40 &&  bingoNumbersOrdered[i]<=49)  firstLine[4]=bingoNumbersOrdered[i] 
+                if (!(bingoNumbersOrdered[i]>=40 &&  bingoNumbersOrdered[i]<=49))  firstLine[4]=""
+                if (bingoNumbersOrdered[i+1]>=40 &&  bingoNumbersOrdered[i+1]<=49)  secondLine[4]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=40 &&  bingoNumbersOrdered[i+1]<=49))  secondLine[4]=""
+                if (bingoNumbersOrdered[i+2]>=40 &&  bingoNumbersOrdered[i+2]<=49)  thirdLine[4]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=40 &&  bingoNumbersOrdered[i+2]<=49))  thirdLine[4]=""
 
-while(!spanOK)  
+                if (bingoNumbersOrdered[i]>=50 &&  bingoNumbersOrdered[i]<=59)  firstLine[5]=bingoNumbersOrdered[i]
+                if (!(bingoNumbersOrdered[i]>=50 &&  bingoNumbersOrdered[i]<=59))  firstLine[5]=""
+                if (bingoNumbersOrdered[i+1]>=50 &&  bingoNumbersOrdered[i+1]<=59)  secondLine[5]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=50 &&  bingoNumbersOrdered[i+1]<=59))  secondLine[5]=""
+                if (bingoNumbersOrdered[i+2]>=50 &&  bingoNumbersOrdered[i+2]<=59)  thirdLine[5]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=50 &&  bingoNumbersOrdered[i+2]<=59))  thirdLine[5]=""
 
+                if (bingoNumbersOrdered[i]>=60 &&  bingoNumbersOrdered[i]<=69)  firstLine[6]=bingoNumbersOrdered[i] 
+                if (!(bingoNumbersOrdered[i]>=60 &&  bingoNumbersOrdered[i]<=69))  firstLine[6]=""
+                if (bingoNumbersOrdered[i+1]>=60 &&  bingoNumbersOrdered[i+1]<=69)  secondLine[6]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=60 &&  bingoNumbersOrdered[i+1]<=69))  secondLine[6]=""
+                if (bingoNumbersOrdered[i+2]>=60 &&  bingoNumbersOrdered[i+2]<=69)  thirdLine[6]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=60 &&  bingoNumbersOrdered[i+2]<=69))  thirdLine[6]=""
 
-    let c=thirdLine.sort(function(a,b){return a-b})
+                if (bingoNumbersOrdered[i]>=70 &&  bingoNumbersOrdered[i]<=79)  firstLine[7]=bingoNumbersOrdered[i]
+                if (!(bingoNumbersOrdered[i]>=70 &&  bingoNumbersOrdered[i]<=79))  firstLine[7]=""
+                if (bingoNumbersOrdered[i+1]>=70 &&  bingoNumbersOrdered[i+1]<=79)  secondLine[7]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=70 &&  bingoNumbersOrdered[i+1]<=79))  secondLine[7]=""
+                if (bingoNumbersOrdered[i+2]>=70 &&  bingoNumbersOrdered[i+2]<=79)  thirdLine[7]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=70 &&  bingoNumbersOrdered[i+2]<=79))  thirdLine[7]=""
 
+                if (bingoNumbersOrdered[i]>=80 &&  bingoNumbersOrdered[i]<=90)  firstLine[8]=bingoNumbersOrdered[i]
+                if (!(bingoNumbersOrdered[i]>=80 &&  bingoNumbersOrdered[i]<=90))  firstLine[8]="" 
+                if (bingoNumbersOrdered[i+1]>=80 &&  bingoNumbersOrdered[i+1]<=90)  secondLine[8]=bingoNumbersOrdered[i+1]
+                if (!(bingoNumbersOrdered[i+1]>=80 &&  bingoNumbersOrdered[i+1]<=90))  secondLine[8]=""
+                if (bingoNumbersOrdered[i+2]>=80 &&  bingoNumbersOrdered[i+2]<=90)  thirdLine[8]=bingoNumbersOrdered[i+2]
+                if (!(bingoNumbersOrdered[i+2]>=80 &&  bingoNumbersOrdered[i+2]<=90))  thirdLine[8]=""
+    }
 
-console.log(a)
-console.log(b)
-console.log(c)
-
-
+  
+console.log(firstLine)
+console.log(secondLine)
+console.log(thirdLine)
+  
+   
+let table
 let table1
 let table2
 let table3
+
 let textBox=document.getElementById("table")    
+        table=document.createElement("h2")
+        table.innerHTML=bingoNumbersOrdered
+        textBox.appendChild(table)
         table1=document.createElement("h2")
-        table1.innerHTML=a
+        table1.innerHTML=firstLine
         textBox.appendChild(table1)
         table2=document.createElement("h2")
-        table2.innerHTML=b
+        table2.innerHTML=secondLine
         textBox.appendChild(table2)
         table3=document.createElement("h2")
-        table3.innerHTML=c
+        table3.innerHTML=thirdLine
         textBox.appendChild(table3)
+        
 }
+
 
 function getANumber(){
     number=Math.ceil((Math.random() * 90))
@@ -203,7 +164,7 @@ function getANumber(){
 
 
 
-    // let ordenedTable=fisrthirdLine.sort()
+    // let ordenedTable=bingoNumbers.sort()
 
 
 
@@ -226,15 +187,15 @@ function getANumber(){
 
     //     let firsthirdLine=[]
     //     for (let i=0;i<=4;i++){
-    //         if (fisrthirdLine[i]>=1 && fisrthirdLine[i]<=9) firsthirdLine[0]=fisrthirdLine[i] 
-    //         if (fisrthirdLine[i]>=10 && fisrthirdLine[i]<=19) firsthirdLine[1]=fisrthirdLine[i]
-    //         if (fisrthirdLine[i]>=20 && fisrthirdLine[i]<=29) firsthirdLine[2]=fisrthirdLine[i]
-    //         if (fisrthirdLine[i]>=30 && fisrthirdLine[i]<=39) firsthirdLine[3]=fisrthirdLine[i]
-    //         if (fisrthirdLine[i]>=40 && fisrthirdLine[i]<=49) firsthirdLine[4]=fisrthirdLine[i]
-    //         if (fisrthirdLine[i]>=50 && fisrthirdLine[i]<=59) firsthirdLine[5]=fisrthirdLine[i]
-    //         if (fisrthirdLine[i]>=60 && fisrthirdLine[i]<=69) firsthirdLine[6]=fisrthirdLine[i]
-    //         if (fisrthirdLine[i]>=70 && fisrthirdLine[i]<=79) firsthirdLine[7]=fisrthirdLine[i]
-    //         if (fisrthirdLine[i]>=80 && fisrthirdLine[i]<=90) firsthirdLine[8]=fisrthirdLine[i]  
+    //         if (bingoNumbers[i]>=1 && bingoNumbers[i]<=9) firsthirdLine[0]=bingoNumbers[i] 
+    //         if (bingoNumbers[i]>=10 && bingoNumbers[i]<=19) firsthirdLine[1]=bingoNumbers[i]
+    //         if (bingoNumbers[i]>=20 && bingoNumbers[i]<=29) firsthirdLine[2]=bingoNumbers[i]
+    //         if (bingoNumbers[i]>=30 && bingoNumbers[i]<=39) firsthirdLine[3]=bingoNumbers[i]
+    //         if (bingoNumbers[i]>=40 && bingoNumbers[i]<=49) firsthirdLine[4]=bingoNumbers[i]
+    //         if (bingoNumbers[i]>=50 && bingoNumbers[i]<=59) firsthirdLine[5]=bingoNumbers[i]
+    //         if (bingoNumbers[i]>=60 && bingoNumbers[i]<=69) firsthirdLine[6]=bingoNumbers[i]
+    //         if (bingoNumbers[i]>=70 && bingoNumbers[i]<=79) firsthirdLine[7]=bingoNumbers[i]
+    //         if (bingoNumbers[i]>=80 && bingoNumbers[i]<=90) firsthirdLine[8]=bingoNumbers[i]  
     //     }
 
     //     console.log(firsthirdLine)
